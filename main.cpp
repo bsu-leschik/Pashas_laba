@@ -80,7 +80,7 @@ pair<double, double> quadraticSolution(const double args[]){
     return x;
 }
 
-double linearSolution(double args[]){
+double linearSolution(const double args[]){
     return -1 * args[2] / args[1];
 }
 

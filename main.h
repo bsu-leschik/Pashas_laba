@@ -14,8 +14,8 @@ double getB(const std::string& problem);
 
 double getC(const std::string& problem);
 
-std::pair<double, double> quadraticSolution();
+std::pair<double, double> quadraticSolution(const double args[]);
 
-double linearSolution();
+double linearSolution(const double args[]);
 
 #endif //PASHA_S_LABA_MAIN_H
