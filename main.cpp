@@ -81,10 +81,10 @@ pair<double, double> quadraticSolution(const double args[]){
 }
 
 double linearSolution(const double args[]){
-    return -1 * args[2] / args[1];
+    return (double) -1 * args[2] / args[1];
 }
 
-int main() {
+int Main() {
     string problem;
     cout << "Enter the quadratic polynomial: ";
     cin >> problem;
