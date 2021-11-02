@@ -6,67 +6,87 @@
 using namespace std;
 
 double getA(const string& problem){
-    int a, tenth = 1;
+    double a = 0;
+    int tenth = 1;
 
-    for (char i : problem) {
-        if (i == 'x'){
+    for (int i = 0; i < problem.size(); i++) {
+        if (problem.find("x^2",0) == -1){
+            return 0;
+        }
+        if (problem[i] == 'x'){
             break;
         }
-        if (a == ',' || a == '.') {
+        if (problem[i] == ',' || problem[i] == '.') {
             tenth = 10;
         } else {
-            a = (i - 48) / tenth;
+            int temp = problem[i] - 48;
+            double tempd = (double) temp / tenth;
+            a += tempd;
             if (tenth != 1){
                 tenth *= 10;
             }
         }
+    }
+    if (a == 0) {
+        return 1;
     }
     return a;
 }
 
 double getB(const string& problem){
-    int b, tenth = 1, num;
+    double b = 0;
+    int tenth = 1, num = -1;
     for (int i = 0; i < problem.size(); ++i) {
-        if(problem[i] == '2' && problem[i + 1] == '+'){
-            num = i + 2;
+        if(problem[i] == '2'){
+            if (problem.find("x+", 0) != -1) {
+                num = i + 2;
+            }
         }
     }
 
     for (int i = num; i < problem.size(); ++i) {
-        if (i == 'x'){
+        if (problem[i] == 'x'){
             break;
         }
-        if (b == ',' || b == '.') {
+        if (problem[i] == ',' || problem[i] == '.') {
             tenth = 10;
         } else {
-            b = (i - 48) / tenth;
+            b +=(double) (problem[i] - 48) / tenth;
             if (tenth != 1){
                 tenth *= 10;
             }
         }
+    }
+    if (b == 0) {
+        if (num == -1){
+            return 0;
+        }
+        return 1;
     }
     return b;
 }
 
 double getC(const string& problem){
-    int c, num, tenth;
+    double c = 0;
+    int num = -1, tenth = 1;
     for (int i = 0; i < problem.size(); ++i) {
-        if(problem[i] == 'x' && problem[i + 1] == '+'){
-            num = i + 2;
+        if(problem[i] == 'x'){
+            if (i + 2 < problem.size()){
+                if (problem[i + 1] == '+'){
+                    num = i + 2;
+                }
+            }
         }
     }
 
     for (int i = num; i < problem.size(); ++i) {
-        if (i == 'x'){
-            break;
-        }
-        if (c == ',' || c == '.') {
+        if (problem[i] == ',' || problem[i] == '.') {
             tenth = 10;
         } else {
-            c = (i - 48) / tenth;
-            if (tenth != 1){
-                tenth *= 10;
-            }
+                c += (double) (problem[i] - 48) / tenth;
+                if (tenth != 1) {
+                    tenth *= 10;
+                }
         }
     }
     return c;
